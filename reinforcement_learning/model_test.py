@@ -446,6 +446,8 @@ if __name__ == "__main__":
     parser.add_argument("--update_every", help="how often to update the network", default=8, type=int)
     parser.add_argument("--use_gpu", help="use GPU if available", default=False, type=bool)
     parser.add_argument("--num_threads", help="number of threads PyTorch can use", default=5, type=int)
+    parser.add_argument("--observation_num", help="observation node we use", default=8, type=int)
+    parser.add_argument("--max_depth", help="max depth we observe", default=3, type=int)
     parser.add_argument("--render", help="render 1 episode in 100", default=False, type=bool)
     parser.add_argument("--last_checkpoint", help="last checkpoint file name", default="", type=str)
     training_params = parser.parse_args()
@@ -487,8 +489,8 @@ if __name__ == "__main__":
     ]
 
     obs_params = {
-        "max_depth":3,
-        "observation_tree_depth": 8,
+        "max_depth":training_params.max_depth,
+        "observation_tree_depth": training_params.observation_num,
         "observation_radius": 10,
         "observation_max_path_depth": 30
     }
